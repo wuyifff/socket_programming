@@ -1,13 +1,16 @@
+src = tcpserver.cpp tcpsocket.cpp  
+obj = client.exe server.exe
 
-src = $(wildcard *.cpp)
+all: $(obj)
 
-obj=$(patsubst %.cpp, %.exe, $(src))
+client.exe : $(src) client.cpp
+	g++ $+ -o $@ -Wall -std=c++11 -lpthread
 
-all : $(obj)
-%.exe:%.cpp
-	g++ $< -o $@ -Wall
+server.exe :  $(src) server.cpp
+	g++ $+ -o $@ -Wall -std=c++11 -lpthread
 
 .PHONY:clean
 clean:
-	-rm  -f $(obj)
+	-rm  -f $(wildcard *.exe)
+
 

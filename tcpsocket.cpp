@@ -1,3 +1,12 @@
+/**
+ * @file tcpsocket.cpp
+ * @author wuyifff (wuyifff@qq.com)
+ * @brief 
+ * @date 2021-10-29
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 #include "tcpsocket.h"
 
 TcpSocket::TcpSocket()
@@ -26,7 +35,7 @@ int TcpSocket::connectToHost(string ip, unsigned short port)
 {
     struct sockaddr_in saddr;
     saddr.sin_family = AF_INET;
-    saddr.sin_port = htons(PORT);
+    saddr.sin_port = htons(port);
     //inet_pton中p和n分别代表表达（presentation)和数值（numeric)
     inet_pton(AF_INET, ip.data(), &saddr.sin_addr.s_addr);
     int ret = connect(socket_fd, (struct sockaddr *)&saddr, sizeof(saddr));
@@ -55,7 +64,7 @@ string TcpSocket::recvMsg()
     int len = 0;
     readn( (char*)&len, 4);
     len = ntohl(len);
-    printf("收到数据，数据大小%d", len);
+    printf("收到数据，数据大小%d字节\n", len);
     char *buf = new char [len + 1];
     int ret = readn(buf, len);
     if(ret != len)

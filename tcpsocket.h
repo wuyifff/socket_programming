@@ -34,18 +34,10 @@ public:
     int connectToHost(string ip, unsigned short port);
     int sendMsg(string msg);
     string recvMsg();
-    //下面是没有封装过的函数
-    // int connectToHost(int fd, const char* ip, unsigned short port);
-    // int sendMsg(int fd, const char* msg);
-    // int recvMsg(int fd, char* msg, int size);
-    // int createSocket();
-    // int closeSocket(int fd);
     
 protected:
     int readn(char* buf, int size);
     int writen(const char* msg, int size);
-    // int readn(int fd, char* buf, int size);
-    // int writen(int fd, const char* msg, int size);
 
     int socket_fd;	// 通信的套接字
 };

@@ -54,7 +54,8 @@ int TcpSocket::sendMsg(string msg)
     int msglen = htonl(msg.size());
     memcpy(data, &msglen, 4);
     memcpy(data + 4, msg.data(), msg.size());
-    int ret = writen(data, msg.size() + 4);
+    //把data写进socket
+    int ret = writen(data, msg.size() + 4);                     
     delete[] data;
     return ret;
 }

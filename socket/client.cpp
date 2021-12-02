@@ -28,6 +28,10 @@ int main()
     {
         cin >> buf;
         client.sendMsg(buf);
+        // 回传
+        string temp;
+        temp = client.recvMsg();
+        cout << "receive msg from server \n" << temp << endl;
         if( buf == string("exit") )
         {
             printf("exit client in 5s!\n");
@@ -37,10 +41,11 @@ int main()
             buf.clear();
     }
 
-    for(int i = 5; i > 0; i++)
+    for(int i = 4; i > 0; --i)
     {
         printf("%d\n", i);
         sleep(1);
+        i = i-2;
     }
 
     return 0;

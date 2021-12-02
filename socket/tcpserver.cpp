@@ -36,7 +36,7 @@ int TcpServer::setListen(unsigned short port)
     return ret;
 }
 
-TcpSocket* TcpServer::acceptConn(sockaddr_in* addr)
+TcpSocket* TcpServer::acceptConnect(sockaddr_in* addr)
 {
     if (addr == NULL)
     {

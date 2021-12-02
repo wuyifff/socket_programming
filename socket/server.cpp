@@ -34,6 +34,7 @@ void* working(void* arg)
         if (!msg.empty())
         {
             cout << msg << endl;
+            pinfo->tcp->sendMsg(msg);    //回传
         }
         else
         {
@@ -55,10 +56,11 @@ int main()
     while (1)
     {
         SockInfo* info = new SockInfo;
-        TcpSocket* tcp = server.acceptConn(&info->addr);
+        TcpSocket* tcp = server.acceptConnect(&info->addr);
         if (tcp == nullptr)
         {
             cout << "重试...." << endl;
+            sleep(1);
             continue;
         }
         // 创建子线程

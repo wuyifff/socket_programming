@@ -17,7 +17,7 @@ class TcpServer : public TcpSocket
 {
 public:
     int setListen(unsigned short port);
-    TcpSocket* acceptConn(sockaddr_in* addr);
+    TcpSocket* acceptConnect(sockaddr_in* addr);
 };
 
 #endif
